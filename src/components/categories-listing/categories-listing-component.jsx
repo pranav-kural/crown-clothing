@@ -5,7 +5,11 @@ import './styles/categories-listing-styles.scss';
 const CategoriesListing = ({ categories }) => (
   <div className="categories-container">
     {categories.map((category) => (
-      <CategoryCard title={category.title} key={category.id} />
+      <CategoryCard
+        key={category.id}
+        title={category.title}
+        imageUrl={category.imageUrl}
+      />
     ))}
   </div>
 );
