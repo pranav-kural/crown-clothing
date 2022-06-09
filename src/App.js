@@ -1,14 +1,11 @@
-import CategoriesListing from './components/categories-listing/categories-listing-component';
-
-import CategoriesData from './data/categories.json';
+import { Routes, Route } from 'react-router-dom';
+import Home from './routes/home/home-component';
 
 const App = () => {
-  const categories = CategoriesData;
-
   return (
-    <div className="app-container">
-      <CategoriesListing categories={categories} />
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
 };
 
