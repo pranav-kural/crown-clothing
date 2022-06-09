@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Crown Clothing E-Commerce Store
+
+An educational project being built as part of React course.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
