@@ -1,0 +1,16 @@
+.sign-in-container {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+
+  h2 {
+    margin-block: 10px;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

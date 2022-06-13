@@ -36,9 +36,10 @@ const SignUpForm = () => {
       );
       // update display name
       user.displayName = user.displayName ? user.displayName : displayName;
-      // create userDoc
-      const userDocRef = await createUserDocumentFromAuth(user);
-      console.log(userDocRef);
+      await createUserDocumentFromAuth(user);
+      resetFormFields();
+
+      alert('User account created successfully. Please sign in!');
     } catch (err) {
       console.error(err);
     }
@@ -48,6 +49,8 @@ const SignUpForm = () => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
+
+  const resetFormFields = () => setFormFields(defaultFormFields);
 
   return (
     <div className="sign-up-container">
