@@ -20,11 +20,11 @@ const Navigation = () => {
           Shop
         </Link>
         {!currentUser ? (
-          <Link className="nav-link" to="/auth">
+          <Link className="nav-link" to="/login">
             Login
           </Link>
         ) : (
-          <Link className="nav-link" to="/auth">
+          <Link className="nav-link" to="/logout">
             Logout
           </Link>
         )}
