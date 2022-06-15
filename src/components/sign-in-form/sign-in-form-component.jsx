@@ -35,8 +35,6 @@ const SignInForm = () => {
       const { user } = await authSignInWithEmailAndPassword(email, password);
       // update context
       setCurrentUser(user);
-      console.log(user);
-      console.log('signed in');
       resetFormFields();
 
       alert('Signed in successfully!');
