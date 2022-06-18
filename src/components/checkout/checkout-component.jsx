@@ -6,7 +6,7 @@ import './styles/checkout-styles.scss';
 const CheckoutComponent = () => {
   // const { cartItems, addItemToCart, removeItemFromCart, decreaseItemQuantity } =
   //   useContext(CartContext);
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, removeItemFromCart } = useContext(CartContext);
 
   return (
     <div className="checkout">
@@ -38,7 +38,9 @@ const CheckoutComponent = () => {
             <span>{quantity}</span>
             <span>{price}</span>
             <span>
-              <Button buttonType="unstyled">X</Button>
+              <Button buttonType="unstyled" onClick={()=> removeItemFromCart(id)}>
+                X
+              </Button>
             </span>
           </div>
         ))}

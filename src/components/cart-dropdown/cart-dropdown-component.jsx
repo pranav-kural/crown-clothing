@@ -6,7 +6,7 @@ import CartItem from '../cart-item/cart-item-component';
 import './cart-dropdown-styles.scss';
 
 const CartDropdown = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, isCartOpen, setIsCartOpen } = useContext(CartContext);
 
   return (
     <div className="cart-dropdown-container">
@@ -16,7 +16,7 @@ const CartDropdown = () => {
         ))}
       </div>
       <Link to="/checkout">
-        <Button>Checkout</Button>
+        <Button onClick={() => setIsCartOpen(!isCartOpen)}>Checkout</Button>
       </Link>
     </div>
   );

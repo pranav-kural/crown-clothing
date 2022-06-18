@@ -15,8 +15,8 @@ const addCartItem = (cartItems, productToAdd) => {
   );
 };
 
-const removeCartItem = (cartItems, productToRemove) => {
-  return cartItems.filter((item) => item.id !== productToRemove.id);
+const removeCartItem = (cartItems, productId) => {
+  return cartItems.filter((item) => item.id !== productId);
 };
 
 const decreaseCartItem = (cartItems, productToDecrease) => {
