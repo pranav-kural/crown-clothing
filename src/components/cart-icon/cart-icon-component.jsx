@@ -5,6 +5,7 @@ import './cart-icon-styles.scss';
 
 const CartIcon = () => {
   const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const { cartCount } = useContext(CartContext);
 
   return (
     <div
@@ -12,7 +13,7 @@ const CartIcon = () => {
       onClick={() => setIsCartOpen(!isCartOpen)}
     >
       <CartIconSVG className="cart-icon-svg" />
-      <span className="cart-item-count">0</span>
+      <span className="cart-item-count">{cartCount}</span>
     </div>
   );
 };
