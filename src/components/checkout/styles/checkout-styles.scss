@@ -15,6 +15,7 @@
       row-gap: 1rem;
       justify-items: center;
       align-items: center;
+      border-bottom: 1px solid darkgrey;
 
       span {
         padding: 0rem 1rem;
@@ -23,6 +24,13 @@
           width: 15vh;
         }
       }
+    }
+
+    .orders-container-empty-cart-message {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
     }
   }
 }
