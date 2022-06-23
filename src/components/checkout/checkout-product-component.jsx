@@ -28,7 +28,7 @@ const CheckoutProductListing = () => {
       <span>${price}</span>
       <span>
         <Button buttonType="unstyled" onClick={() => removeItemFromCart(id)}>
-          X
+          &#10005;
         </Button>
       </span>
     </div>
