@@ -1,6 +1,4 @@
 import {
-  CategoryCardBodyHeading,
-  CategoryCardBodyParagraph,
   CategoryCardDiv,
   CategoryCardImage,
   CategoryCartBody,
@@ -15,8 +13,8 @@ const CategoryCard = ({ title, imageUrl }) => {
         }}
       />
       <CategoryCartBody>
-        <CategoryCardBodyHeading>{title}</CategoryCardBodyHeading>
-        <CategoryCardBodyParagraph>Shop Now</CategoryCardBodyParagraph>
+        <h2>{title}</h2>
+        <p>Shop Now</p>
       </CategoryCartBody>
     </CategoryCardDiv>
   );
