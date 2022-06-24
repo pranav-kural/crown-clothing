@@ -1,9 +1,8 @@
 import CategoryCard from './category-card-component';
-
-import './styles/categories-listing-styles.scss';
+import { CategoriesContainer } from './styles/categories-listing-styles';
 
 const CategoriesListing = ({ categories }) => (
-  <div className="categories-container">
+  <CategoriesContainer>
     {categories.map((category) => (
       <CategoryCard
         key={category.id}
@@ -11,7 +10,7 @@ const CategoriesListing = ({ categories }) => (
         imageUrl={category.imageUrl}
       />
     ))}
-  </div>
+  </CategoriesContainer>
 );
 
 export default CategoriesListing;

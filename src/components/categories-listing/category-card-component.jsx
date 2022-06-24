@@ -1,17 +1,24 @@
+import {
+  CategoryCardBodyHeading,
+  CategoryCardBodyParagraph,
+  CategoryCardDiv,
+  CategoryCardImage,
+  CategoryCartBody,
+} from './styles/categories-listing-styles';
+
 const CategoryCard = ({ title, imageUrl }) => {
   return (
-    <div className="category-card">
-      <div
-        className="category-card-image"
+    <CategoryCardDiv>
+      <CategoryCardImage
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
       />
-      <div className="category-card-body">
-        <h2>{title}</h2>
-        <p>Shop Now</p>
-      </div>
-    </div>
+      <CategoryCartBody>
+        <CategoryCardBodyHeading>{title}</CategoryCardBodyHeading>
+        <CategoryCardBodyParagraph>Shop Now</CategoryCardBodyParagraph>
+      </CategoryCartBody>
+    </CategoryCardDiv>
   );
 };
 export default CategoryCard;
