@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import Button from '../button/button-component';
 
+const cartDropdownWidth = '19rem';
+const cartDropdownHeight = '20rem';
+
 export const CartDropdownContainer = styled.div`
   position: absolute;
-  width: 240px;
-  height: 340px;
+  width: ${cartDropdownWidth};
+  height: ${cartDropdownHeight};
   display: flex;
   flex-direction: column;
   padding: 20px;
