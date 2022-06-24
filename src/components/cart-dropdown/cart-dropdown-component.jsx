@@ -1,24 +1,41 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../contexts/cart-context';
-import Button from '../button/button-component';
 import CartItem from '../cart-item/cart-item-component';
-import './cart-dropdown-styles.scss';
+import {
+  CartDropdownContainer,
+  CartItems,
+  CheckoutButton,
+  EmptyMessage,
+} from './cart-dropdown-styles';
 
 const CartDropdown = () => {
   const { cartItems, isCartOpen, setIsCartOpen } = useContext(CartContext);
 
   return (
-    <div className="cart-dropdown-container">
-      <div className="cart-items">
-        {cartItems.map((cartItem) => (
-          <CartItem key={cartItem.id} cartItem={cartItem} />
-        ))}
-      </div>
-      <Link to="/checkout">
-        <Button onClick={() => setIsCartOpen(!isCartOpen)}>Checkout</Button>
-      </Link>
-    </div>
+    <CartDropdownContainer>
+      {cartItems.length !== 0 ? (
+        <>
+          <CartItems>
+            {cartItems.map((cartItem) => (
+              <CartItem key={cartItem.id} cartItem={cartItem} />
+            ))}
+          </CartItems>
+          <Link to="/checkout">
+            <CheckoutButton onClick={() => setIsCartOpen(!isCartOpen)}>
+              Checkout
+            </CheckoutButton>
+          </Link>
+        </>
+      ) : (
+        <EmptyMessage>
+          Cart is empty!
+          <Link to="/shop">
+            <u>SHOP</u>
+          </Link>
+        </EmptyMessage>
+      )}
+    </CartDropdownContainer>
   );
 };
 
