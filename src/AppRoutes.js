@@ -4,8 +4,29 @@ import Home from './routes/home/home-route';
 import Shop from './routes/shop/shop-route';
 import Checkout from './routes/shop/checkout-route';
 import Authentication from './routes/authentication/authentication-route';
+import { useEffect } from 'react';
+import {
+  createUserDocumentFromAuth,
+  onAuthStateChangedListener,
+} from './utils/firebase/firebase-utils.js';
+import { setCurrentUser } from './store/reducers/user/user-actions.js';
+import { useDispatch } from 'react-redux';
 
 const AppRoutes = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      // create user doc in DB if it doesn't exists
+      // returns userDocRef
+      if (user) createUserDocumentFromAuth(user);
+      // update context
+      dispatch(setCurrentUser(user));
+    });
+    // unsubscribe when component umount
+    return unsubscribe;
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<App />}>
