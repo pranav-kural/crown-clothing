@@ -1,16 +1,17 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SignInForm from '../../components/sign-in-form/sign-in-form-component';
 import SignUpForm from '../../components/sign-up-form/sign-up-form-component';
-import { UserContext } from '../../contexts/user-context';
+import { selectCurrentUser } from '../../store/reducers/user/user-selector';
 import { signOutUser } from '../../utils/firebase/firebase-utils';
 import './authentication-styles.scss';
 
 const Authentication = ({ action }) => {
   let navigate = useNavigate();
-  // if action is logout and user is already logged in, then logout user
+  // if action is logout and user is logged in, then logout user
   // for all other cases just display the signin/signup page
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
 
   const signOutHandler = async () => {
     await signOutUser();
