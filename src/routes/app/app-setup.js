@@ -1,4 +1,4 @@
-import { setCategoriesMap } from '../../store/reducers/categories/categories-action';
+import { setCategories } from '../../store/reducers/categories/categories-action';
 import { setCurrentUser } from '../../store/reducers/user/user-actions';
 import {
   createUserDocumentFromAuth,
@@ -24,7 +24,7 @@ export const appSetup = (dispatch) => {
 
   // update categoriesMap
   const getCategoriesMap = async () =>
-    dispatch(setCategoriesMap(await getCategoriesAndDocuments()));
+    dispatch(setCategories(await getCategoriesAndDocuments()));
   getCategoriesMap();
 
   // unsubscribe onAuthStateChangedListener when component umount
