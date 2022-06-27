@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../contexts/cart-context';
+import { selectCartData } from '../../store/reducers/cart/cart-selector';
 import CheckoutProductListing from './checkout-product-component';
 import './styles/checkout-styles.scss';
 
 const CheckoutComponent = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, cartTotal } = useSelector(selectCartData);
 
   return (
     <div className="checkout">
@@ -19,16 +19,9 @@ const CheckoutComponent = () => {
         </div>
         {cartItems.length !== 0 ? (
           <>
-            <CheckoutProductListing />
+            <CheckoutProductListing cartItems={cartItems} />
             <div className="orders-container-message">
-              <span className="orders-total">
-                TOTAL: $
-                {cartItems.reduce(
-                  (currentTotal, cartItem) =>
-                    currentTotal + cartItem?.quantity * cartItem?.price,
-                  0
-                )}
-              </span>
+              <span className="orders-total">TOTAL: ${cartTotal}</span>
             </div>
           </>
         ) : (

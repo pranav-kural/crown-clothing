@@ -1,14 +1,13 @@
-import { useContext } from 'react';
-import { CartContext } from '../../contexts/cart-context';
+import { useDispatch } from 'react-redux';
+import {
+  decreaseItemQuantity,
+  increaseItemQuantity,
+  removeItemFromCart,
+} from '../../store/reducers/cart/cart-action';
 import Button from '../button/button-component';
 
-const CheckoutProductListing = () => {
-  const {
-    cartItems,
-    increaseItemQuantity,
-    removeItemFromCart,
-    decreaseItemQuantity,
-  } = useContext(CartContext);
+const CheckoutProductListing = ({ cartItems }) => {
+  const dispatch = useDispatch();
 
   return cartItems.map(({ id, imageUrl, name, quantity, price }) => (
     <div className="orders-container-product-row" key={id}>
@@ -17,17 +16,26 @@ const CheckoutProductListing = () => {
       </span>
       <span>{name}</span>
       <span>
-        <Button buttonType="unstyled" onClick={() => decreaseItemQuantity(id)}>
+        <Button
+          buttonType="unstyled"
+          onClick={() => dispatch(decreaseItemQuantity(id))}
+        >
           {'❮'}
         </Button>
         {quantity}
-        <Button buttonType="unstyled" onClick={() => increaseItemQuantity(id)}>
+        <Button
+          buttonType="unstyled"
+          onClick={() => dispatch(increaseItemQuantity(id))}
+        >
           {'❯'}
         </Button>
       </span>
       <span>${price}</span>
       <span>
-        <Button buttonType="unstyled" onClick={() => removeItemFromCart(id)}>
+        <Button
+          buttonType="unstyled"
+          onClick={() => dispatch(removeItemFromCart(id))}
+        >
           &#10005;
         </Button>
       </span>

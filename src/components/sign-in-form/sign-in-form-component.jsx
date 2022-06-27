@@ -43,7 +43,14 @@ const SignInForm = () => {
 
   const resetFormFields = () => setFormFields(defaultFormFields);
 
-  const signInWithGoogle = async () => await signInWithGooglePopup();
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithGooglePopup();
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
 
   return (
     <div className="sign-in-container">
