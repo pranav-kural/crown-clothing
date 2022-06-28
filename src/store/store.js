@@ -9,6 +9,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { encryptTransform } from 'redux-persist-transform-encrypt';
 import logger from 'redux-logger';
+import { NON_SECURE_STATIC_KEY } from '../config/sensitive-persist-encrypted';
 
 // middlewares
 // const loggerMiddleware = (store) => (next) => (action) => {
@@ -26,9 +27,11 @@ const persistConfig = {
   blacklist: ['user'],
   transforms: [
     encryptTransform({
-      secretKey: 'some-random-key',
+      secretKey: NON_SECURE_STATIC_KEY,
       onError: function (error) {
-        alert(`From: persistConfig->transforms->encryptTransform: ${error}`);
+        console.warn(
+          `Persist Secret Key Different.\nFrom: persistConfig->transforms->encryptTransform\n${error}`
+        );
       },
     }),
   ],
