@@ -3,8 +3,10 @@ import {
   legacy_createStore as createStore,
   applyMiddleware,
 } from 'redux';
-// import logger from 'redux-logger';
 import { rootReducer } from './root-reducer';
+// access to localStorage
+import storage from 'redux-presist/lib/storage';
+import { persistReducer, persistStore } from 'redux-persist';
 
 // middlewares
 const loggerMiddleware = (store) => (next) => (action) => {
@@ -19,9 +21,23 @@ const loggerMiddleware = (store) => (next) => (action) => {
   console.log('next state: ', store.getState());
 };
 
+const persistConfig = {
+  key: 'root', // whole reducer
+  storage,
+  blacklist: ['user'],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const middleWares = [loggerMiddleware];
 
 const composedEnhancers = compose(applyMiddleware(...middleWares));
 
 // create store
-export const store = createStore(rootReducer, undefined, composedEnhancers);
+export const store = createStore(
+  persistedReducer,
+  undefined,
+  composedEnhancers
+);
+
+export const persistor = persistStore(store);
