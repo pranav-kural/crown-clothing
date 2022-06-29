@@ -9,6 +9,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { encryptTransform } from 'redux-persist-transform-encrypt';
 import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 import { NON_SECURE_STATIC_KEY } from '../config/sensitive-persist-encrypted';
 
 // middlewares
@@ -39,7 +40,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleWares = process.env.NODE_ENV !== 'production' ? [logger] : [];
+const middleWares = process.env.NODE_ENV !== 'production' ? [logger] : [thunk];
 
 const composeEnhancer =
   (process.env.NODE_ENV !== 'production' &&
