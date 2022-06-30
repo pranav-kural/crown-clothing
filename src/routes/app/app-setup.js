@@ -1,8 +1,7 @@
-import { setCategories } from '../../store/reducers/categories/categories-action';
+import { fetchCategoriesAsync } from '../../store/reducers/categories/categories-action';
 import { setCurrentUser } from '../../store/reducers/user/user-actions';
 import {
   createUserDocumentFromAuth,
-  getCategoriesAndDocuments,
   onAuthStateChangedListener,
 } from '../../utils/firebase/firebase-utils';
 
@@ -23,9 +22,7 @@ export const appSetup = (dispatch) => {
   });
 
   // update categoriesMap
-  const getCategoriesMap = async () =>
-    dispatch(setCategories(await getCategoriesAndDocuments()));
-  getCategoriesMap();
+  dispatch(fetchCategoriesAsync());
 
   // unsubscribe onAuthStateChangedListener when component umount
   return unsubscribe;
