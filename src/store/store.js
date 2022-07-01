@@ -9,8 +9,10 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { encryptTransform } from 'redux-persist-transform-encrypt';
 import logger from 'redux-logger';
-import thunk from 'redux-thunk';
+// import thunk from 'redux-thunk';
+import { createSagaMiddleware } from 'redux-saga';
 import { NON_SECURE_STATIC_KEY } from '../config/sensitive-persist-encrypted';
+import { rootSaga } from './root-saga';
 
 // middlewares
 // const loggerMiddleware = (store) => (next) => (action) => {
@@ -25,7 +27,7 @@ import { NON_SECURE_STATIC_KEY } from '../config/sensitive-persist-encrypted';
 const persistConfig = {
   key: 'root', // whole reducer
   storage,
-  blacklist: ['user'],
+  whitelist: ['cart'],
   transforms: [
     encryptTransform({
       secretKey: NON_SECURE_STATIC_KEY,
@@ -40,7 +42,9 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleWares = [thunk].concat(
+const sagaMiddleware = createSagaMiddleware();
+
+const middleWares = [sagaMiddleware].concat(
   process.env.NODE_ENV !== 'production' ? [logger] : []
 );
 
@@ -58,5 +62,7 @@ export const store = createStore(
   undefined,
   composedEnhancers
 );
+
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
