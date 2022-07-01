@@ -1,3 +1,15 @@
+.category-products {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  h2 {
+    font-size: 2rem;
+    text-shadow: -1px 3px 3px #d9d9d9;
+  }
+}
+
 .category-products-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
