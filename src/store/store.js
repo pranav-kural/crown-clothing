@@ -9,8 +9,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { encryptTransform } from 'redux-persist-transform-encrypt';
 import logger from 'redux-logger';
-// import thunk from 'redux-thunk';
-import { createSagaMiddleware } from 'redux-saga';
+import createSagaMiddleware from 'redux-saga';
 import { NON_SECURE_STATIC_KEY } from '../config/sensitive-persist-encrypted';
 import { rootSaga } from './root-saga';
 

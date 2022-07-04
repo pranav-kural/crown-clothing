@@ -1,4 +1,3 @@
-import { getCategoriesAndDocuments } from '../../../utils/firebase/firebase-utils';
 import { createAction } from '../../../utils/reducers/reducers-utils';
 
 export const CATEGORIES_ACTION_TYPES = {
@@ -16,13 +15,13 @@ export const fetchCategoriesSuccess = (categories) =>
 export const fetchCategoriesFailed = (error) =>
   createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
 
-export const fetchCategoriesAsync = () => async (dispatch) => {
-  // indicate categories loading started
-  dispatch(fetchCategoriesStart());
-  try {
-    // fetch categories and dispatch the success
-    dispatch(fetchCategoriesSuccess(await getCategoriesAndDocuments()));
-  } catch (error) {
-    dispatch(fetchCategoriesFailed(error));
-  }
-};
+// export const fetchCategoriesAsync = () => async (dispatch) => {
+//   // indicate categories loading started
+//   dispatch(fetchCategoriesStart());
+//   try {
+//     // fetch categories and dispatch the success
+//     dispatch(fetchCategoriesSuccess(await getCategoriesAndDocuments()));
+//   } catch (error) {
+//     dispatch(fetchCategoriesFailed(error));
+//   }
+// };
