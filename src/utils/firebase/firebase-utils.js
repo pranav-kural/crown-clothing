@@ -61,11 +61,35 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         createdOn,
       });
     } catch (err) {
-      console.log('Error creating the user', err.message);
+      console.error('Error creating the user', err.message);
     }
   }
 
   return userDocRef;
+};
+
+export const getUserSnapshot = async (userAuth, additionalDetails) => {
+  if (!userAuth) return;
+
+  const userDocRef = doc(db, 'users', userAuth.uid);
+  const userSnapshot = await getDoc(userDocRef);
+  if (!userSnapshot.exists()) {
+    // if user does not exist, create the user and add to db
+    const { displayName, email } = userAuth;
+    const createdOn = new Date();
+
+    try {
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdOn,
+      });
+    } catch (err) {
+      console.error('Error creating the user', err.message);
+    }
+  }
+
+  return userSnapshot;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -99,11 +123,23 @@ export const addCollectionAndDocuments = async (
   );
   // initiate the transcation
   batch.commit();
-  console.log('batch write complete');
 };
 
 export const getCategoriesAndDocuments = async () => {
   const queryCategories = query(collection(db, 'categories'));
   const querySnapshot = await getDocs(queryCategories);
   return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+};
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
 };
