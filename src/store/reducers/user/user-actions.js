@@ -6,7 +6,9 @@ export const USER_ACTION_TYPES = {
   GOOGLE_SIGN_IN_START: 'user/GOOGLE_SIGN_IN_START',
   EMAIL_SIGN_IN_START: 'user/EMAIL_SIGN_IN_START',
   SIGN_IN_SUCCESS: 'user/SIGN_IN_SUCCESS',
-  SIGN_IN_FAILURE: 'user/SIGN_IN_FAILURE',
+  AUTH_FAILURE: 'user/AUTH_FAILURE',
+  USER_SIGN_OUT: 'user/USER_SIGN_OUT',
+  SIGN_UP_EMAIL_PASSWORD: 'user/SIGN_UP_EMAIL_PASSWORD',
 };
 
 export const setCurrentUser = (user) =>
@@ -24,5 +26,14 @@ export const emailSignInStart = (email, password) =>
 export const signInSucess = (user) =>
   createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user);
 
-export const signInFailure = (error) =>
-  createAction(USER_ACTION_TYPES.SIGN_IN_FAILURE, error);
+export const authFailure = (error) =>
+  createAction(USER_ACTION_TYPES.AUTH_FAILURE, error);
+
+export const userSignOut = () => createAction(USER_ACTION_TYPES.USER_SIGN_OUT);
+
+export const signUpEmailPassword = (name, email, password) =>
+  createAction(USER_ACTION_TYPES.SIGN_UP_EMAIL_PASSWORD, {
+    name,
+    email,
+    password,
+  });

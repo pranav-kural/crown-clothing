@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
-  authSignInWithEmailAndPassword,
-  signInWithGooglePopup,
-} from '../../utils/firebase/firebase-utils';
+  emailSignInStart,
+  googleSignInStart,
+} from '../../store/reducers/user/user-actions';
 import Button from '../button/button-component';
 import FormInput from '../form-input/form-input-component';
 import './styles/sign-in-form-styles.scss';
@@ -15,6 +16,9 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const dispatch = useDispatch();
+
+  const signInWithGoogle = () => dispatch(googleSignInStart());
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,11 +29,8 @@ const SignInForm = () => {
     if (!email || !password) return alert('Invalid credentials!');
 
     try {
-      // see if auth user
-      await authSignInWithEmailAndPassword(email, password);
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
-
-      alert('Signed in successfully!');
     } catch (err) {
       console.error(err);
       alert(err.message);
@@ -42,15 +43,6 @@ const SignInForm = () => {
   };
 
   const resetFormFields = () => setFormFields(defaultFormFields);
-
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithGooglePopup();
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  };
 
   return (
     <div className="sign-in-container">

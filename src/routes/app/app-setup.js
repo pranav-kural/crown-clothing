@@ -1,12 +1,5 @@
 import { fetchCategoriesStart } from '../../store/reducers/categories/categories-action';
-import {
-  checkUserSession,
-  setCurrentUser,
-} from '../../store/reducers/user/user-actions';
-import {
-  createUserDocumentFromAuth,
-  onAuthStateChangedListener,
-} from '../../utils/firebase/firebase-utils';
+import { checkUserSession } from '../../store/reducers/user/user-actions';
 
 /**
  * Initial App Setup.
