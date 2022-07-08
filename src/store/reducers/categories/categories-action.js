@@ -4,6 +4,9 @@ export const CATEGORIES_ACTION_TYPES = {
   FETCH_CATEGORIES_START: 'FETCH_CATEGORIES_START',
   FETCH_CATEGORIES_SUCCESS: 'FETCH_CATEGORIES_SUCCESS',
   FETCH_CATEGORIES_FAILED: 'FETCH_CATEGORIES_FAILED',
+  FETCH_CATEGORY_LISTINGS_START: 'FETCH_CATEGORY_LISTINGS_START',
+  FETCH_CATEGORY_LISTINGS_SUCCESS: 'FETCH_CATEGORY_LISTINGS_SUCCESS',
+  FETCH_CATEGORY_LISTINGS_FAILED: 'FETCH_CATEGORY_LISTINGS_FAILED',
 };
 
 export const fetchCategoriesStart = () =>
@@ -15,13 +18,14 @@ export const fetchCategoriesSuccess = (categories) =>
 export const fetchCategoriesFailed = (error) =>
   createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
 
-// export const fetchCategoriesAsync = () => async (dispatch) => {
-//   // indicate categories loading started
-//   dispatch(fetchCategoriesStart());
-//   try {
-//     // fetch categories and dispatch the success
-//     dispatch(fetchCategoriesSuccess(await getCategoriesAndDocuments()));
-//   } catch (error) {
-//     dispatch(fetchCategoriesFailed(error));
-//   }
-// };
+export const fetchCategoryListings = () =>
+  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORY_LISTINGS_START);
+
+export const fetchCategoryListingsSuccess = (categoryListings) =>
+  createAction(
+    CATEGORIES_ACTION_TYPES.FETCH_CATEGORY_LISTINGS_SUCCESS,
+    categoryListings
+  );
+
+export const fetchCategoryListingsFailed = (error) =>
+  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORY_LISTINGS_FAILED, error);

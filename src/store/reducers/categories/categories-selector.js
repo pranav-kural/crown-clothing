@@ -20,3 +20,13 @@ export const selectCategoriesIsLoading = createSelector(
   [selectCategoriesReducer],
   (categoriesSlice) => categoriesSlice.isLoading
 );
+
+export const selectCategoryListings = createSelector(
+  [selectCategoriesReducer],
+  (categoriesSlice) => categoriesSlice.categoryListings
+);
+
+export const selectIsLoadingListings = createSelector(
+  [selectCategoriesReducer],
+  (categoriesSlice) => categoriesSlice.isLoadingListing
+);

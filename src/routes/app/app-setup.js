@@ -1,4 +1,6 @@
+import { batch } from 'react-redux';
 import { fetchCategoriesStart } from '../../store/reducers/categories/categories-action';
+import { fetchCategoryListings } from '../../store/reducers/categories/categories-action';
 import { checkUserSession } from '../../store/reducers/user/user-actions';
 
 /**
@@ -9,19 +11,9 @@ import { checkUserSession } from '../../store/reducers/user/user-actions';
  * @returns unsubscribe function to unsubscribe the onAuthStateChangedListener()
  */
 export const appSetup = (dispatch) => {
-  // const unsubscribe = onAuthStateChangedListener((user) => {
-  //   // create user doc in DB if it doesn't exists
-  //   // returns userDocRef
-  //   if (user) createUserDocumentFromAuth(user);
-  //   // update context
-  //   dispatch(setCurrentUser(user));
-  // });
-
-  dispatch(checkUserSession());
-
-  // update categoriesMap
-  dispatch(fetchCategoriesStart());
-
-  // unsubscribe onAuthStateChangedListener when component umount
-  // return unsubscribe;
+  batch(() => {
+    dispatch(checkUserSession());
+    dispatch(fetchCategoryListings());
+    dispatch(fetchCategoriesStart());
+  });
 };

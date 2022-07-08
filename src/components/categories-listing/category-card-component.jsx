@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   CategoryCardDiv,
   CategoryCardImage,
@@ -14,7 +15,9 @@ const CategoryCard = ({ title, imageUrl }) => {
       />
       <CategoryCartBody>
         <h2>{title}</h2>
-        <p>Shop Now</p>
+        <Link to={`shop/${title}`}>
+          <p>Shop Now</p>
+        </Link>
       </CategoryCartBody>
     </CategoryCardDiv>
   );

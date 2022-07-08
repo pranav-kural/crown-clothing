@@ -131,6 +131,12 @@ export const getCategoriesAndDocuments = async () => {
   return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
+export const getCategoryListings = async () => {
+  const queryCategoryListings = query(collection(db, 'categoryListings'));
+  const querySnapshot = await getDocs(queryCategoryListings);
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
+};
+
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
