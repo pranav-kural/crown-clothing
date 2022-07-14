@@ -31,7 +31,6 @@ export function* onFetchCategories() {
 export function* fetchCategoryListings() {
   try {
     const categoryListings = yield call(getCategoryListings);
-    console.log('cl: ', categoryListings);
     yield put(fetchCategoryListingsSuccess(categoryListings));
   } catch (error) {
     console.error(error);

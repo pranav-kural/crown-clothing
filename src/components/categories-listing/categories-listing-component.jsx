@@ -10,7 +10,7 @@ import { CategoriesContainer } from './styles/categories-listing-styles';
 const CategoriesListing = () => {
   const categoryListings = useSelector(selectCategoryListings);
   const isLoadingListings = useSelector(selectIsLoadingListings);
-  console.log('categories', categoryListings);
+
   return isLoadingListings ? (
     <Spinner />
   ) : (

@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectCartData } from '../../store/reducers/cart/cart-selector';
 import CheckoutProductListing from './checkout-product-component';
+import PaymentForm from './payment-form/payment-form-component';
 import './styles/checkout-styles.scss';
 
 const CheckoutComponent = () => {
@@ -22,6 +23,7 @@ const CheckoutComponent = () => {
             <CheckoutProductListing cartItems={cartItems} />
             <div className="orders-container-message">
               <span className="orders-total">TOTAL: ${cartTotal}</span>
+              <PaymentForm />
             </div>
           </>
         ) : (
