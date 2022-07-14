@@ -10,7 +10,6 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { encryptTransform } from 'redux-persist-transform-encrypt';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
-import { NON_SECURE_STATIC_KEY } from '../config/sensitive-persist-encrypted';
 import { rootSaga } from './root-saga';
 
 // middlewares
@@ -29,7 +28,7 @@ const persistConfig = {
   whitelist: ['cart'],
   transforms: [
     encryptTransform({
-      secretKey: NON_SECURE_STATIC_KEY,
+      secretKey: process.env.REACT_APP_REDUX_PERSIST_STATIC_KEY,
       onError: function (error) {
         console.warn(
           `Persist Secret Key Different.\nFrom: persistConfig->transforms->encryptTransform\n${error}`
