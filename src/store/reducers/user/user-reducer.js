@@ -4,6 +4,7 @@ const INITIAL_USER_STATE = {
   currentUser: null,
   isLoading: false,
   error: null,
+  reduxPersistKey: '',
 };
 
 export const userReducer = (state = INITIAL_USER_STATE, action = {}) => {
