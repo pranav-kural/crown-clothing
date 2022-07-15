@@ -11,7 +11,6 @@ import { encryptTransform } from 'redux-persist-transform-encrypt';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './root-saga';
-import { getReduxPersistKey } from '../utils/firebase/firebase-utils';
 
 // middlewares
 // const loggerMiddleware = (store) => (next) => (action) => {
@@ -23,17 +22,13 @@ import { getReduxPersistKey } from '../utils/firebase/firebase-utils';
 //   console.log('next state: ', store.getState());
 // };
 
-const getSecKey = () => {
-  const { seckey } = getReduxPersistKey();
-}
-
 const persistConfig = {
   key: 'root', // whole reducer
   storage,
   whitelist: ['cart'],
   transforms: [
     encryptTransform({
-      secretKey: process.env.REACT_APP_REDUX_PERSIST_STATIC_KEY,
+      secretKey: window.location.origin,
       onError: function (error) {
         console.warn(
           `Persist Secret Key Different.\nFrom: persistConfig->transforms->encryptTransform\n${error}`

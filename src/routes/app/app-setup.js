@@ -13,6 +13,7 @@ import { checkUserSession } from '../../store/reducers/user/user-actions';
 export const appSetup = (dispatch) => {
   batch(() => {
     dispatch(checkUserSession());
+    // dispatch(setReduxPersistKey());
     dispatch(fetchCategoryListings());
     dispatch(fetchCategoriesStart());
   });

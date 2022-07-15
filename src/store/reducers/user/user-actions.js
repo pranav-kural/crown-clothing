@@ -9,7 +9,9 @@ export const USER_ACTION_TYPES = {
   AUTH_FAILURE: 'user/AUTH_FAILURE',
   USER_SIGN_OUT: 'user/USER_SIGN_OUT',
   SIGN_UP_EMAIL_PASSWORD: 'user/SIGN_UP_EMAIL_PASSWORD',
-  SET_REDUX_PERSIST_KEY: 'user/SET_REDUX_PERSIST_KEY',
+  SET_REDUX_PERSIST_KEY_START: 'user/SET_REDUX_PERSIST_KEY_START',
+  SET_REDUX_PERSIST_KEY_SUCCESS: 'user/SET_REDUX_PERSIST_KEY_SUCCESS',
+  SET_REDUX_PERSIST_KEY_FAILURE: 'user/SET_REDUX_PERSIST_KEY_FAILURE',
 };
 
 export const setCurrentUser = (user) =>
@@ -39,5 +41,8 @@ export const signUpEmailPassword = (name, email, password) =>
     password,
   });
 
-export const setReduxPersistKey = ({ seckey }) =>
+export const setReduxPersistKey = () =>
+  createAction(USER_ACTION_TYPES.SET_REDUX_PERSIST_KEY_START);
+
+export const setReduxPersistKeySuccess = (seckey) =>
   createAction(USER_ACTION_TYPES.SET_REDUX_PERSIST_KEY, seckey);

@@ -19,6 +19,8 @@ export const userReducer = (state = INITIAL_USER_STATE, action = {}) => {
       return { ...state, currentUser: payload, isLoading: false };
     case USER_ACTION_TYPES.AUTH_FAILURE:
       return { ...state, error: payload };
+    case USER_ACTION_TYPES.SET_REDUX_PERSIST_KEY_SUCCESS:
+      return { ...state, reduxPersistKey: payload };
     default:
       return state;
   }

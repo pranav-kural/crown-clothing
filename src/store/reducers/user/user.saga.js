@@ -11,7 +11,7 @@ import {
 import {
   authFailure,
   setCurrentUser,
-  setReduxPersistKey,
+  setReduxPersistKeySuccess,
   signInSucess,
   USER_ACTION_TYPES,
 } from './user-actions';
@@ -133,13 +133,13 @@ export function* onAuthFailure() {
 
 export function* setReduxPersistKeyFromFirebase() {
   const { seckey } = yield call(getReduxPersistKey);
-  if (seckey) yield put(setReduxPersistKey(seckey));
-  else yield put(setReduxPersistKey('NON_SECURE_STATIC_KEY'));
+  if (seckey) yield put(setReduxPersistKeySuccess(seckey));
+  else yield put(setReduxPersistKeySuccess('NON_SECURE_STATIC_KEY'));
 }
 
 export function* onSetReduxPersistKey() {
   yield takeLatest(
-    USER_ACTION_TYPES.SET_REDUX_PERSIST_KEY,
+    USER_ACTION_TYPES.SET_REDUX_PERSIST_KEY_START,
     setReduxPersistKeyFromFirebase
   );
 }
