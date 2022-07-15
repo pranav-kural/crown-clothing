@@ -11,6 +11,7 @@ import { encryptTransform } from 'redux-persist-transform-encrypt';
 import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './root-saga';
+import { getReduxPersistKey } from '../utils/firebase/firebase-utils';
 
 // middlewares
 // const loggerMiddleware = (store) => (next) => (action) => {
@@ -21,6 +22,10 @@ import { rootSaga } from './root-saga';
 //   next(action);
 //   console.log('next state: ', store.getState());
 // };
+
+const getSecKey = () => {
+  const { seckey } = getReduxPersistKey();
+}
 
 const persistConfig = {
   key: 'root', // whole reducer
