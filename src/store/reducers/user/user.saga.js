@@ -3,6 +3,7 @@ import {
   authSignInWithEmailAndPassword,
   createAuthUserWithEmailAndPassword,
   getCurrentUser,
+  getReduxPersistKey,
   getUserSnapshot,
   signInWithGooglePopup,
   signOutUser,
@@ -10,6 +11,7 @@ import {
 import {
   authFailure,
   setCurrentUser,
+  setReduxPersistKeySuccess,
   signInSucess,
   USER_ACTION_TYPES,
 } from './user-actions';
@@ -129,6 +131,19 @@ export function* onAuthFailure() {
   yield takeEvery(USER_ACTION_TYPES.AUTH_FAILURE, handleAuthFailure);
 }
 
+export function* setReduxPersistKeyFromFirebase() {
+  const { seckey } = yield call(getReduxPersistKey);
+  if (seckey) yield put(setReduxPersistKeySuccess(seckey));
+  else yield put(setReduxPersistKeySuccess('NON_SECURE_STATIC_KEY'));
+}
+
+export function* onSetReduxPersistKey() {
+  yield takeLatest(
+    USER_ACTION_TYPES.SET_REDUX_PERSIST_KEY_START,
+    setReduxPersistKeyFromFirebase
+  );
+}
+
 export function* userSagas() {
   yield all([
     call(onCheckUserSession),
@@ -137,5 +152,6 @@ export function* userSagas() {
     call(onUserSignOut),
     call(onCreateUserWithEmailAndPassword),
     call(onAuthFailure),
+    call(onSetReduxPersistKey),
   ]);
 }

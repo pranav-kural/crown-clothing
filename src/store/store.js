@@ -28,7 +28,7 @@ const persistConfig = {
   whitelist: ['cart'],
   transforms: [
     encryptTransform({
-      secretKey: process.env.REACT_APP_REDUX_PERSIST_STATIC_KEY,
+      secretKey: window.location.origin,
       onError: function (error) {
         console.warn(
           `Persist Secret Key Different.\nFrom: persistConfig->transforms->encryptTransform\n${error}`

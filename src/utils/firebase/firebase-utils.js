@@ -137,6 +137,17 @@ export const getCategoryListings = async () => {
   return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
+export const getReduxPersistKey = async () => {
+  const docRef = doc(db, 'config', 'ReduxPersist');
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    return docSnap.data();
+  } else {
+    // doc.data() will be undefined in this case
+    console.error('Unable to get Redux Persist Key');
+  }
+};
+
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(
