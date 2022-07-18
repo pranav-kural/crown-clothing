@@ -36,6 +36,17 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+
+      .login-before-checkout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        :first-child {
+          padding-bottom: 1rem;
+        }
+      }
     }
 
     .orders-total {
