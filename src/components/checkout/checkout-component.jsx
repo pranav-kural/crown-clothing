@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectCartData } from '../../store/reducers/cart/cart-selector';
 import { selectUserLoggedIn } from '../../store/reducers/user/user-selector';
 import Button, { BUTTON_TYPES } from '../button/button-component';
+import Spinner from '../spinner/spinner-component';
 import CheckoutProductListing from './checkout-product-component';
 import PaymentForm from './payment-form/payment-form-component';
 import './styles/checkout-styles.scss';
@@ -10,6 +12,7 @@ import './styles/checkout-styles.scss';
 const CheckoutComponent = () => {
   const { cartItems, cartTotal } = useSelector(selectCartData);
   const userLoggedIn = useSelector(selectUserLoggedIn);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
   return (
     <div className="checkout">
@@ -26,8 +29,13 @@ const CheckoutComponent = () => {
             <CheckoutProductListing cartItems={cartItems} />
             <div className="orders-container-message">
               <span className="orders-total">TOTAL: ${cartTotal}</span>
-              {userLoggedIn ? (
-                <PaymentForm />
+              {userLoggedIn && !isProcessingPayment ? (
+                <PaymentForm setProcessingPayment={setIsProcessingPayment} />
+              ) : isProcessingPayment ? (
+                <div className="payment-processing-message">
+                  Payment being processed...
+                  <Spinner />
+                </div>
               ) : (
                 <div className="login-before-checkout">
                   <span>Please login before checkout</span>
