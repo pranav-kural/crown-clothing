@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { clearCartItems } from '../../store/reducers/cart/cart-action';
 import { selectCartData } from '../../store/reducers/cart/cart-selector';
 import { selectUserLoggedIn } from '../../store/reducers/user/user-selector';
 import Button, { BUTTON_TYPES } from '../button/button-component';
@@ -10,6 +11,8 @@ import PaymentForm from './payment-form/payment-form-component';
 import './styles/checkout-styles.scss';
 
 const CheckoutComponent = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cartItems, cartTotal } = useSelector(selectCartData);
   const userLoggedIn = useSelector(selectUserLoggedIn);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
@@ -19,6 +22,12 @@ const CheckoutComponent = () => {
     e.preventDefault();
     setIsProcessingPayment(false);
     setPaymentStatus('');
+  };
+
+  const freshStartHandler = (e) => {
+    tryAgainHandler(e);
+    dispatch(clearCartItems());
+    navigate('/');
   };
 
   return (
@@ -66,7 +75,10 @@ const CheckoutComponent = () => {
                   ) : paymentStatus === 'success' ? (
                     <div className="payment-status-container">
                       <div>WooHoo! Payment successful! 🥳</div>
-                      <Button buttonType={BUTTON_TYPES.google}>
+                      <Button
+                        buttonType={BUTTON_TYPES.google}
+                        onClick={freshStartHandler}
+                      >
                         Fresh Start
                       </Button>
                     </div>

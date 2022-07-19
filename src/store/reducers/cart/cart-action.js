@@ -8,8 +8,9 @@ import {
 } from './cart-helpers';
 
 export const CART_ACTION_TYPES = {
-  TOGGLE_IS_CART_OPEN: 'TOGGLE_IS_CART_OPEN',
-  UPDATE_CART_ITEMS: 'UPDATE_CART_ITEMS',
+  TOGGLE_IS_CART_OPEN: 'cart/TOGGLE_IS_CART_OPEN',
+  UPDATE_CART_ITEMS: 'cart/UPDATE_CART_ITEMS',
+  CLEAR_CART_ITEMS: 'cart/CLEAR_CART_ITEMS',
 };
 
 const updateCartItems = (actionFunction, params) => {
@@ -51,3 +52,6 @@ export const decreaseItemQuantity = (productId) =>
 
 export const increaseItemQuantity = (productId) =>
   updateCartItems(increaseCartItem, productId);
+
+export const clearCartItems = () =>
+  createAction(CART_ACTION_TYPES.CLEAR_CART_ITEMS);
