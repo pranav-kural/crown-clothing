@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toggleIsCartOpen } from '../../store/reducers/cart/cart-action';
 import { selectCartItems } from '../../store/reducers/cart/cart-selector';
+import Button, { BUTTON_TYPES } from '../button/button-component';
 import CartItem from '../cart-item/cart-item-component';
 import {
   CartDropdownContainer,
   CartItems,
-  CheckoutButton,
   EmptyMessage,
 } from './cart-dropdown-styles';
 
@@ -25,9 +25,12 @@ const CartDropdown = () => {
             ))}
           </CartItems>
           <Link to="/checkout">
-            <CheckoutButton onClick={() => checkoutBtnClickHandler()}>
+            <Button
+              onClick={() => checkoutBtnClickHandler()}
+              variant={BUTTON_TYPES.contained}
+            >
               Checkout
-            </CheckoutButton>
+            </Button>
           </Link>
         </>
       ) : (

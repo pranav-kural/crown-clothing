@@ -11,7 +11,7 @@ export const DefaultButton = styled.button`
   background-color: black;
   color: white;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
   border: none;
   cursor: pointer;
@@ -53,6 +53,6 @@ export const UnstyledButton = styled.button`
   text-transform: uppercase;
   font-size: 15px;
   font-weight: bold;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   cursor: pointer;
 `;

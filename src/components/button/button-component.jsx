@@ -1,32 +1,34 @@
-import {
-  UnstyledButton,
-  DefaultButton,
-  GoogleSignInButton,
-  InvertedButton,
-} from './button-styles';
+import MUIButton from '@mui/material/Button';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
+// import {
+//   UnstyledButton,
+//   DefaultButton,
+//   GoogleSignInButton,
+//   InvertedButton,
+// } from './button-styles';
 
 // allowed button types
 export const BUTTON_TYPES = {
-  default: 'default',
-  google: 'google',
-  inverted: 'inverted',
-  unstyled: 'unstyled',
+  default: 'outlined',
+  contained: 'contained',
+  unstyled: 'text',
 };
 
-const Button = ({ children, buttonType, ...otherProps }) => {
-  const BUTTON_TYPE_CLASSES = {
-    default: DefaultButton,
-    google: GoogleSignInButton,
-    inverted: InvertedButton,
-    unstyled: UnstyledButton,
-  };
+export const BUTTON_ICONS = {
+  AddShoppingCart: AddShoppingCartIcon,
+};
 
-  const CustomButton =
-    buttonType && Object.values(BUTTON_TYPES).includes(buttonType)
-      ? BUTTON_TYPE_CLASSES[buttonType]
-      : BUTTON_TYPE_CLASSES['default'];
-
-  return <CustomButton {...otherProps}>{children}</CustomButton>;
+const Button = ({ children, variant, icon, ...otherProps }) => {
+  return (
+    <MUIButton
+      variant={variant ? variant : BUTTON_TYPES.default}
+      {...otherProps}
+    >
+      {children}
+      {icon ? icon : ''}
+    </MUIButton>
+  );
 };
 
 export default Button;

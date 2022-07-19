@@ -34,7 +34,7 @@ const PaymentForm = ({ setProcessingPayment, setPaymentStatus }) => {
     try {
       await handleStripePayment(stripe, elements, CardElement, {
         customerName: customer?.displayName ? customer.displayName : 'Guest',
-        amount,
+        amount: amount * 100,
         currency: transcationCurrency,
         payment_method_types: acceptedPaymentMethods,
       });
@@ -52,7 +52,7 @@ const PaymentForm = ({ setProcessingPayment, setPaymentStatus }) => {
       <FormContainer onSubmit={paymentHandler}>
         <h2>Credit Card Payment: </h2>
         <CardElement />
-        <Button buttonType={BUTTON_TYPES.google} className="pay-now-button">
+        <Button variant={BUTTON_TYPES.contained} sx={{ marginTop: '1rem' }}>
           Pay now
         </Button>
       </FormContainer>

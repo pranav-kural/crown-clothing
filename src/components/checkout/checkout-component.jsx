@@ -76,7 +76,7 @@ const CheckoutComponent = () => {
                     <div className="payment-status-container">
                       <div>WooHoo! Payment successful! 🥳</div>
                       <Button
-                        buttonType={BUTTON_TYPES.google}
+                        variant={BUTTON_TYPES.contained}
                         onClick={freshStartHandler}
                       >
                         Fresh Start
@@ -86,7 +86,7 @@ const CheckoutComponent = () => {
                     <div className="payment-status-container">
                       <div>Oh-no! payment failed! 😧</div>
                       <Button
-                        buttonType={BUTTON_TYPES.default}
+                        variant={BUTTON_TYPES.contained}
                         onClick={tryAgainHandler}
                       >
                         Try again!
@@ -97,7 +97,7 @@ const CheckoutComponent = () => {
               ) : (
                 <div className="login-before-checkout">
                   <span>Please login before checkout</span>
-                  <Button buttonType={BUTTON_TYPES.google}>
+                  <Button variant={BUTTON_TYPES.contained}>
                     <Link to="/login">LOGIN</Link>
                   </Button>
                 </div>

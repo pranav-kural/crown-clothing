@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Button from '../button/button-component';
 
 const cartDropdownWidth = '19rem';
 const cartDropdownHeight = '20rem';
@@ -31,8 +30,4 @@ export const CartItems = styled.div`
   display: flex;
   flex-direction: column;
   overflow: scroll;
-`;
-
-export const CheckoutButton = styled(Button)`
-  margin-top: auto;
 `;

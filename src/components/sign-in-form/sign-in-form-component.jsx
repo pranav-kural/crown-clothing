@@ -4,7 +4,7 @@ import {
   emailSignInStart,
   googleSignInStart,
 } from '../../store/reducers/user/user-actions';
-import Button from '../button/button-component';
+import Button, { BUTTON_TYPES } from '../button/button-component';
 import FormInput from '../form-input/form-input-component';
 import './styles/sign-in-form-styles.scss';
 
@@ -67,7 +67,7 @@ const SignInForm = () => {
         />
         <div className="button-group">
           <Button type="submit">Sign In</Button>
-          <Button onClick={signInWithGoogle} buttonType="google">
+          <Button onClick={signInWithGoogle} variant={BUTTON_TYPES.contained}>
             Sign in With Google
           </Button>
         </div>
