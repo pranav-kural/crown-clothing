@@ -4,7 +4,6 @@ export const handleStripePayment = async (
   CardElement,
   { customerName, amount, currency, payment_method_types }
 ) => {
-  console.log('params: ', elements);
   try {
     const {
       paymentIntent: { client_secret },
@@ -17,7 +16,6 @@ export const handleStripePayment = async (
         },
       },
     };
-    console.log('paymentData', paymentData);
     const paymentResult = await stripe.confirmCardPayment(
       client_secret,
       paymentData

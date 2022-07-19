@@ -25,3 +25,5 @@ yarn-error.log*
 # sensitive
 sensitive*
 .env
+# Local Netlify folder
+.netlify
