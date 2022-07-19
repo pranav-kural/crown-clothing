@@ -37,7 +37,10 @@
       justify-content: center;
       flex-direction: column;
 
-      .login-before-checkout {
+      .login-before-checkout,
+      .payment-processing-message,
+      .payment-status-container,
+      .payment-form-container:first-child form {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -46,6 +49,10 @@
         :first-child {
           padding-bottom: 1rem;
         }
+      }
+
+      .hidden {
+        display: none;
       }
     }
 
@@ -57,5 +64,9 @@
       font-size: 1.5rem;
       font-weight: bolder;
     }
+  }
+
+  .pay-now-button {
+    margin-top: 1rem;
   }
 }

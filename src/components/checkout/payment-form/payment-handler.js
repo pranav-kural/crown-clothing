@@ -4,26 +4,32 @@ export const handleStripePayment = async (
   CardElement,
   { customerName, amount, currency, payment_method_types }
 ) => {
+  console.log('params: ', elements);
   try {
     const {
       paymentIntent: { client_secret },
     } = await getPaymentIntent(amount, currency, payment_method_types);
-    const paymentResult = await stripe.confirmCardPayment(client_secret, {
+    const paymentData = {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
           name: customerName,
         },
       },
-    });
+    };
+    console.log('paymentData', paymentData);
+    const paymentResult = await stripe.confirmCardPayment(
+      client_secret,
+      paymentData
+    );
 
-    if (paymentResult.error)
-      console.error(`Oops! payment failed ${paymentResult.error}`);
-    else if (paymentResult.paymentIntent.status === 'succeeded')
+    if (paymentResult.error) {
+      console.error(`Oops! payment failed`);
+      throw new Error(JSON.stringify(paymentResult.error));
+    } else if (paymentResult.paymentIntent.status === 'succeeded')
       console.log(`Successful payment received from ${customerName}`);
   } catch (error) {
-    console.error(`handleStripePayment: ${error}`);
-    return error;
+    throw error;
   }
 };
 
