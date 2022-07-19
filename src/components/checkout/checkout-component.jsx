@@ -1,12 +1,25 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectCartData } from '../../store/reducers/cart/cart-selector';
+import { selectUserLoggedIn } from '../../store/reducers/user/user-selector';
+import Button, { BUTTON_TYPES } from '../button/button-component';
+import Spinner from '../spinner/spinner-component';
 import CheckoutProductListing from './checkout-product-component';
 import PaymentForm from './payment-form/payment-form-component';
 import './styles/checkout-styles.scss';
 
 const CheckoutComponent = () => {
   const { cartItems, cartTotal } = useSelector(selectCartData);
+  const userLoggedIn = useSelector(selectUserLoggedIn);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState('');
+
+  const tryAgainHandler = (e) => {
+    e.preventDefault();
+    setIsProcessingPayment(false);
+    setPaymentStatus('');
+  };
 
   return (
     <div className="checkout">
@@ -23,7 +36,60 @@ const CheckoutComponent = () => {
             <CheckoutProductListing cartItems={cartItems} />
             <div className="orders-container-message">
               <span className="orders-total">TOTAL: ${cartTotal}</span>
-              <PaymentForm />
+              {userLoggedIn ? (
+                <>
+                  {paymentStatus === '' ? (
+                    <>
+                      <div
+                        className={
+                          isProcessingPayment
+                            ? 'hidden'
+                            : 'payment-form-container'
+                        }
+                      >
+                        <PaymentForm
+                          setProcessingPayment={setIsProcessingPayment}
+                          setPaymentStatus={setPaymentStatus}
+                        />
+                      </div>
+                      <div
+                        className={
+                          isProcessingPayment
+                            ? 'payment-processing-message'
+                            : 'hidden'
+                        }
+                      >
+                        Payment being processed...
+                        <Spinner />
+                      </div>
+                    </>
+                  ) : paymentStatus === 'success' ? (
+                    <div className="payment-status-container">
+                      <div>WooHoo! Payment successful! 🥳</div>
+                      <Button buttonType={BUTTON_TYPES.google}>
+                        Fresh Start
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="payment-status-container">
+                      <div>Oh-no! payment failed! 😧</div>
+                      <Button
+                        buttonType={BUTTON_TYPES.default}
+                        onClick={tryAgainHandler}
+                      >
+                        Try again!
+                      </Button>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="login-before-checkout">
+                  <span>Please login before checkout</span>
+                  <Button buttonType={BUTTON_TYPES.google}>
+                    <Link to="/login">LOGIN</Link>
+                  </Button>
+                </div>
+              )}
             </div>
           </>
         ) : (
