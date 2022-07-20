@@ -1,3 +1,4 @@
+import { Divider, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 import ProductCardComponent from '../products-preview/product-card-component';
 import './categories-preview-styles.scss';
@@ -9,13 +10,17 @@ const CategoryPreview = ({ title, products }) => {
           <span className="category-preview-title">{title.toUpperCase()}</span>
         </Link>
       </h2>
-      <div className="category-preview-products">
+      <Stack
+        direction={{ xs: 'column', sm: 'column', md: 'row' }}
+        justifyContent="space-evenly"
+        spacing={2}
+      >
         {products
           .filter((_, idx) => idx < 4)
           .map((product) => (
             <ProductCardComponent product={product} key={product.id} />
           ))}
-      </div>
+      </Stack>
     </div>
   );
 };

@@ -13,7 +13,7 @@
   position: relative;
 
   img {
-    width: 100%;
+    width: 20vw;
     height: 40vh;
     object-fit: cover;
     margin-bottom: 5px;
@@ -40,7 +40,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 18px;
-    padding: 0.5rem 0 0 0.5rem;
+    padding: 0.5rem 1rem 0 1rem;
 
     .name {
       width: 90%;
