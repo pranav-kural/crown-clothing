@@ -1,5 +1,11 @@
-import MUIButton from '@mui/material/Button';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+// import MUIButton from '@mui/material/Button';
+// import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import {
+  AddToCartButton,
+  DefaultButton,
+  DefaultButtonContained,
+  DefaultOutlinedButton,
+} from './custom-buttons/custom-buttons';
 
 // import {
 //   UnstyledButton,
@@ -9,25 +15,39 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 // } from './button-styles';
 
 // allowed button types
+const BUTTONS = {
+  DefaultBtn: DefaultButton,
+  DefaultContainedBtn: DefaultButtonContained,
+  DefaultOutlinedBtn: DefaultOutlinedButton,
+  AddToCartBtn: AddToCartButton,
+};
+
 export const BUTTON_TYPES = {
-  default: 'outlined',
-  contained: 'contained',
-  unstyled: 'text',
+  DefaultBtn: 'DefaultBtn',
+  DefaultContainedBtn: 'DefaultContainedBtn',
+  DefaultOutlinedBtn: 'DefaultOutlinedBtn',
+  AddToCartBtn: 'AddToCartBtn',
 };
 
-export const BUTTON_ICONS = {
-  AddShoppingCart: AddShoppingCartIcon,
+const getCustomBtn = (buttonType) => {
+  switch (buttonType) {
+    case BUTTON_TYPES.AddToCartBtn:
+      return { CUSTOM_BTN: BUTTONS.AddToCartBtn, variant: 'contained' };
+    case BUTTON_TYPES.DefaultContainedBtn:
+      return { CUSTOM_BTN: BUTTONS.DefaultContainedBtn, variant: 'contained' };
+    case BUTTON_TYPES.DefaultOutlinedBtn:
+      return { CUSTOM_BTN: BUTTONS.DefaultOutlinedBtn, variant: 'outlined' };
+    default:
+      return { CUSTOM_BTN: BUTTONS.DefaultBtn, variant: 'text' };
+  }
 };
 
-const Button = ({ children, variant, icon, ...otherProps }) => {
+const Button = ({ buttonType, children, ...otherProps }) => {
+  const { CUSTOM_BTN, variant } = getCustomBtn(buttonType);
   return (
-    <MUIButton
-      variant={variant ? variant : BUTTON_TYPES.default}
-      {...otherProps}
-    >
+    <CUSTOM_BTN variant={variant} {...otherProps}>
       {children}
-      {icon ? icon : ''}
-    </MUIButton>
+    </CUSTOM_BTN>
   );
 };
 
