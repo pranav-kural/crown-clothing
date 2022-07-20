@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../../store/reducers/cart/cart-action';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import Button, { BUTTON_TYPES } from '../button/button-component';
 import './product-card-styles.scss';
-import { AddToCartButton } from './product-card-styles';
-import { BUTTON_TYPES } from '../button/button-component';
 
 const ProductCardComponent = ({ product }) => {
   const { name, price, imageUrl } = product;
@@ -17,14 +16,21 @@ const ProductCardComponent = ({ product }) => {
         <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
-      <AddToCartButton
-        variant={BUTTON_TYPES.contained}
+      <Button
+        buttonType={BUTTON_TYPES.AddToCartBtn}
         onClick={addProductToCart}
         size="large"
-      >
-        Add to cart
-        <AddShoppingCartIcon fontSize="medium" sx={{ marginLeft: '0.5rem' }} />
-      </AddToCartButton>
+        className="add-to-cart-button"
+        children={
+          <>
+            Add to cart
+            <AddShoppingCartIcon
+              fontSize="medium"
+              sx={{ marginLeft: '0.5rem' }}
+            />
+          </>
+        }
+      />
     </div>
   );
 };

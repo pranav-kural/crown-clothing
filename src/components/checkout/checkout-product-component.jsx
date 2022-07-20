@@ -4,7 +4,7 @@ import {
   increaseItemQuantity,
   removeItemFromCart,
 } from '../../store/reducers/cart/cart-action';
-import Button, { BUTTON_TYPES } from '../button/button-component';
+import Button from '../button/button-component';
 
 const CheckoutProductListing = ({ cartItems }) => {
   const dispatch = useDispatch();
@@ -16,26 +16,17 @@ const CheckoutProductListing = ({ cartItems }) => {
       </span>
       <span>{name}</span>
       <span>
-        <Button
-          variant={BUTTON_TYPES.unstyled}
-          onClick={() => dispatch(decreaseItemQuantity(id))}
-        >
+        <Button onClick={() => dispatch(decreaseItemQuantity(id))}>
           {'❮'}
         </Button>
         {quantity}
-        <Button
-          variant={BUTTON_TYPES.unstyled}
-          onClick={() => dispatch(increaseItemQuantity(id))}
-        >
+        <Button onClick={() => dispatch(increaseItemQuantity(id))}>
           {'❯'}
         </Button>
       </span>
       <span>${price}</span>
       <span>
-        <Button
-          variant={BUTTON_TYPES.unstyled}
-          onClick={() => dispatch(removeItemFromCart(id))}
-        >
+        <Button onClick={() => dispatch(removeItemFromCart(id))}>
           &#10005;
         </Button>
       </span>

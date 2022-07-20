@@ -66,8 +66,14 @@ const SignInForm = () => {
           required
         />
         <div className="button-group">
-          <Button type="submit">Sign In</Button>
-          <Button onClick={signInWithGoogle} variant={BUTTON_TYPES.contained}>
+          <Button buttonType={BUTTON_TYPES.DefaultOutlinedBtn} type="submit">
+            Sign In
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ color: 'white' }}
+            onClick={signInWithGoogle}
+          >
             Sign in With Google
           </Button>
         </div>

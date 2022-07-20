@@ -26,8 +26,8 @@ const CartDropdown = () => {
           </CartItems>
           <Link to="/checkout">
             <Button
+              buttonType={BUTTON_TYPES.DefaultContainedBtn}
               onClick={() => checkoutBtnClickHandler()}
-              variant={BUTTON_TYPES.contained}
             >
               Checkout
             </Button>

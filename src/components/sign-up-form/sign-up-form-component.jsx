@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signUpEmailPassword } from '../../store/reducers/user/user-actions';
-import Button from '../button/button-component';
+import Button, { BUTTON_TYPES } from '../button/button-component';
 import FormInput from '../form-input/form-input-component';
 import './styles/sign-up-form-styles.scss';
 
@@ -78,7 +78,9 @@ const SignUpForm = () => {
           value={confirmPassword}
           required
         />
-        <Button type="submit">Sign Up</Button>
+        <Button buttonType={BUTTON_TYPES.DefaultOutlinedBtn} type="submit">
+          Sign Up
+        </Button>
       </form>
     </div>
   );

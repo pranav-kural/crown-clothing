@@ -52,7 +52,10 @@ const PaymentForm = ({ setProcessingPayment, setPaymentStatus }) => {
       <FormContainer onSubmit={paymentHandler}>
         <h2>Credit Card Payment: </h2>
         <CardElement />
-        <Button variant={BUTTON_TYPES.contained} sx={{ marginTop: '1rem' }}>
+        <Button
+          buttonType={BUTTON_TYPES.DefaultContainedBtn}
+          sx={{ marginTop: '1rem' }}
+        >
           Pay now
         </Button>
       </FormContainer>
