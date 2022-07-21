@@ -1,18 +1,9 @@
-// import MUIButton from '@mui/material/Button';
-// import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import {
   AddToCartButton,
   DefaultButton,
   DefaultButtonContained,
   DefaultOutlinedButton,
 } from './custom-buttons/custom-buttons';
-
-// import {
-//   UnstyledButton,
-//   DefaultButton,
-//   GoogleSignInButton,
-//   InvertedButton,
-// } from './button-styles';
 
 // allowed button types
 const BUTTONS = {

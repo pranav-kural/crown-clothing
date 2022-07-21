@@ -1,5 +1,5 @@
 export const defaultStyles = {
-  color: '#2b525f',
+  color: '#102027',
   margin: '0.5rem',
   fontSize: '1rem',
   fontFamily: [

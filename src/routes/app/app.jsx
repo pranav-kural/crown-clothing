@@ -1,3 +1,4 @@
+import { Container } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
@@ -13,10 +14,10 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="app-container">
+    <Container>
       <Header />
       <Outlet />
-    </div>
+    </Container>
   );
 };
 
