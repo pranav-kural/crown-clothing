@@ -1,6 +1,6 @@
-import { Divider, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
-import ProductCardComponent from '../products-preview/product-card-component';
+import ProductCardComponent from '../../products-card/product-card-component';
 import './categories-preview-styles.scss';
 const CategoryPreview = ({ title, products }) => {
   return (

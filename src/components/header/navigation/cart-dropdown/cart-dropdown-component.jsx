@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { toggleIsCartOpen } from '../../store/reducers/cart/cart-action';
-import { selectCartItems } from '../../store/reducers/cart/cart-selector';
-import Button, { BUTTON_TYPES } from '../button/button-component';
-import CartItem from '../cart-item/cart-item-component';
+import { toggleIsCartOpen } from '../../../../store/reducers/cart/cart-action';
+import { selectCartItems } from '../../../../store/reducers/cart/cart-selector';
+import Button, { BUTTON_TYPES } from '../../../button/button-component';
+import CartItem from './cart-item/cart-item-component';
 import {
   CartDropdownContainer,
   CartItems,

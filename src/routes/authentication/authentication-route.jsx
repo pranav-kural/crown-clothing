@@ -1,3 +1,4 @@
+import { Stack } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -15,13 +16,15 @@ const Authentication = ({ action }) => {
   const currentUser = useSelector(selectCurrentUser);
 
   const loginPageHTML = (
-    <div className="auth-container">
-      <h1>Authentication Page</h1>
-      <div className="form-container">
+    <Stack direction="column" sx={{ padding: '5vh' }}>
+      <Stack
+        direction={{ xs: 'column', sm: 'column', md: 'row' }}
+        justifyContent="space-around"
+      >
         <SignInForm />
         <SignUpForm />
-      </div>
-    </div>
+      </Stack>
+    </Stack>
   );
 
   useEffect(() => {

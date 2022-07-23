@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import Navigation from '../../components/navigation/navigation-component';
+import Header from '../../components/header/header-component';
 import { appSetup } from './app-setup';
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <Navigation />
+      <Header />
       <Outlet />
     </div>
   );

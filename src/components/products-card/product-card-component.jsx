@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
-import { addItemToCart } from '../../store/reducers/cart/cart-action';
+import { Card } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { addItemToCart } from '../../store/reducers/cart/cart-action';
 import Button, { BUTTON_TYPES } from '../button/button-component';
 import './product-card-styles.scss';
-import { Card } from '@mui/material';
 
 const ProductCardComponent = ({ product }) => {
   const { name, price, imageUrl } = product;

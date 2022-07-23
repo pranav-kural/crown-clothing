@@ -1,4 +1,4 @@
-import { Grid, Stack } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -6,7 +6,7 @@ import {
   selectCategoriesMap,
   selectCategoriesIsLoading,
 } from '../../store/reducers/categories/categories-selector';
-import ProductCardComponent from '../products-preview/product-card-component';
+import ProductCardComponent from '../products-card/product-card-component';
 import Spinner from '../spinner/spinner-component';
 import './category-products-styles.scss';
 
