@@ -5,7 +5,7 @@ import CartDropdown from './cart-dropdown/cart-dropdown-component';
 
 import { NavLink } from './styles/navigation-styles';
 import { selectIsCartOpen } from '../../../store/reducers/cart/cart-selector';
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import Button, { BUTTON_TYPES } from '../../button/button-component';
 
 const Navigation = () => {
@@ -13,7 +13,11 @@ const Navigation = () => {
   const isCartOpen = useSelector(selectIsCartOpen);
 
   return (
-    <Stack direction="row" alignItems="center">
+    <Box
+      backgroundColor="rgba(217, 217, 217, 0.3)"
+      marginY="2vh"
+      paddingY="0.5vh"
+    >
       <Stack
         direction="row"
         width="100%"
@@ -22,29 +26,40 @@ const Navigation = () => {
       >
         <Stack direction="row" alignItems="center" justifyContent="flex-start">
           <NavLink to="/">
-            <Button buttonType={BUTTON_TYPES.DefaultBtn}>Home</Button>
+            <Button buttonType={BUTTON_TYPES.DefaultBtn} sx={{ margin: '0' }}>
+              Home
+            </Button>
           </NavLink>
           <NavLink to="/shop">
-            <Button buttonType={BUTTON_TYPES.DefaultBtn}>Shop</Button>
+            <Button buttonType={BUTTON_TYPES.DefaultBtn} sx={{ margin: '0' }}>
+              Shop
+            </Button>
           </NavLink>
           {!currentUser ? (
             <NavLink to="/login">
-              <Button buttonType={BUTTON_TYPES.DefaultBtn}>Login</Button>
+              <Button buttonType={BUTTON_TYPES.DefaultBtn} sx={{ margin: '0' }}>
+                Login
+              </Button>
             </NavLink>
           ) : (
             <NavLink to="/logout">
-              <Button buttonType={BUTTON_TYPES.DefaultBtn}>Logout</Button>
+              <Button buttonType={BUTTON_TYPES.DefaultBtn} sx={{ margin: '0' }}>
+                Logout
+              </Button>
             </NavLink>
           )}
         </Stack>
         <Stack direction="row" alignItems="center" justifyContent="flex-end">
-          <Button buttonType={BUTTON_TYPES.DefaultBtn}>
+          <Button
+            buttonType={BUTTON_TYPES.DefaultBtn}
+            sx={{ margin: '0', padding: '0' }}
+          >
             <CartIcon />
           </Button>
         </Stack>
       </Stack>
       {isCartOpen && <CartDropdown />}
-    </Stack>
+    </Box>
   );
 };
 

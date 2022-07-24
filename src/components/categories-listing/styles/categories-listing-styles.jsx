@@ -14,29 +14,17 @@ export const CategoryCardImage = styled.div`
   background-position: center;
 `;
 
-export const CategoryCartBody = styled.div`
+export const CategoryCardBody = styled.div`
   height: 90px;
   padding: 0 25px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border-radius: 0.25rem;
   background-color: white;
-  opacity: 0.7;
+  opacity: 0.9;
   position: absolute;
-
-  h2 {
-    font-weight: bold;
-    margin: 0 6px 0;
-    font-size: 22px;
-    color: #4a4a4a;
-  }
-
-  p {
-    font-weight: lighter;
-    font-size: 16px;
-  }
 `;
 
 export const CategoryCardDiv = styled.div`
@@ -46,7 +34,8 @@ export const CategoryCardDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border-radius: 0.25rem;
+  box-shadow: 0.15rem 0.15rem 0.15rem black;
   margin: 0 7.5px 15px;
   overflow: hidden;
 
@@ -58,7 +47,7 @@ export const CategoryCardDiv = styled.div`
       transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
 
-    & ${CategoryCartBody} {
+    & ${CategoryCardBody} {
       opacity: 0.9;
     }
   }

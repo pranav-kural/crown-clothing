@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { Card } from '@mui/material';
+import { Card, Stack, Typography } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { addItemToCart } from '../../store/reducers/cart/cart-action';
 import Button, { BUTTON_TYPES } from '../button/button-component';
@@ -11,13 +11,22 @@ const ProductCardComponent = ({ product }) => {
   const addProductToCart = () => dispatch(addItemToCart(product));
 
   return (
-    <Card variant="outlined">
+    <Card>
       <div className="product-card-container">
         <img src={imageUrl} alt={name} />
-        <div className="footer">
-          <span className="name">{name}</span>
-          <span className="price">${price}</span>
-        </div>
+        <Stack
+          direction="row"
+          alignContent="center"
+          justifyContent="space-between"
+          width="100%"
+        >
+          <Typography variant="span" padding="0.75rem" fontSize="1.2rem">
+            {name}
+          </Typography>
+          <Typography variant="span" padding="0.75rem" fontSize="1.2rem">
+            ${price}
+          </Typography>
+        </Stack>
         <Button
           buttonType={BUTTON_TYPES.AddToCartBtn}
           onClick={addProductToCart}

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import Header from '../../components/header/header-component';
 import { appSetup } from './app-setup';
+import './app.scss';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,9 @@ const App = () => {
   return (
     <Container>
       <Header />
-      <Outlet />
+      <div id="app-main">
+        <Outlet />
+      </div>
     </Container>
   );
 };
