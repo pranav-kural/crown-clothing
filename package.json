@@ -28,7 +28,6 @@
     "sass": "^1.52.3",
     "stripe": "^9.13.0",
     "styled-components": "^5.3.5",
-    "vanta": "^0.5.22",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
