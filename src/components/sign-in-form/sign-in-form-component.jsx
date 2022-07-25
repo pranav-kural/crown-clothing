@@ -4,7 +4,7 @@ import {
   emailSignInStart,
   googleSignInStart,
 } from '../../store/reducers/user/user-actions';
-import Button from '../button/button-component';
+import Button, { BUTTON_TYPES } from '../button/button-component';
 import FormInput from '../form-input/form-input-component';
 import './styles/sign-in-form-styles.scss';
 
@@ -66,8 +66,14 @@ const SignInForm = () => {
           required
         />
         <div className="button-group">
-          <Button type="submit">Sign In</Button>
-          <Button onClick={signInWithGoogle} buttonType="google">
+          <Button buttonType={BUTTON_TYPES.DefaultOutlinedBtn} type="submit">
+            Sign In
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ color: 'white' }}
+            onClick={signInWithGoogle}
+          >
             Sign in With Google
           </Button>
         </div>

@@ -1,32 +1,45 @@
 import {
-  UnstyledButton,
+  AddToCartButton,
   DefaultButton,
-  GoogleSignInButton,
-  InvertedButton,
-} from './button-styles';
+  DefaultButtonContained,
+  DefaultOutlinedButton,
+} from './custom-buttons/custom-buttons';
 
 // allowed button types
-export const BUTTON_TYPES = {
-  default: 'default',
-  google: 'google',
-  inverted: 'inverted',
-  unstyled: 'unstyled',
+const BUTTONS = {
+  DefaultBtn: DefaultButton,
+  DefaultContainedBtn: DefaultButtonContained,
+  DefaultOutlinedBtn: DefaultOutlinedButton,
+  AddToCartBtn: AddToCartButton,
 };
 
-const Button = ({ children, buttonType, ...otherProps }) => {
-  const BUTTON_TYPE_CLASSES = {
-    default: DefaultButton,
-    google: GoogleSignInButton,
-    inverted: InvertedButton,
-    unstyled: UnstyledButton,
-  };
+export const BUTTON_TYPES = {
+  DefaultBtn: 'DefaultBtn',
+  DefaultContainedBtn: 'DefaultContainedBtn',
+  DefaultOutlinedBtn: 'DefaultOutlinedBtn',
+  AddToCartBtn: 'AddToCartBtn',
+};
 
-  const CustomButton =
-    buttonType && Object.values(BUTTON_TYPES).includes(buttonType)
-      ? BUTTON_TYPE_CLASSES[buttonType]
-      : BUTTON_TYPE_CLASSES['default'];
+const getCustomBtn = (buttonType) => {
+  switch (buttonType) {
+    case BUTTON_TYPES.AddToCartBtn:
+      return { CUSTOM_BTN: BUTTONS.AddToCartBtn, variant: 'contained' };
+    case BUTTON_TYPES.DefaultContainedBtn:
+      return { CUSTOM_BTN: BUTTONS.DefaultContainedBtn, variant: 'contained' };
+    case BUTTON_TYPES.DefaultOutlinedBtn:
+      return { CUSTOM_BTN: BUTTONS.DefaultOutlinedBtn, variant: 'outlined' };
+    default:
+      return { CUSTOM_BTN: BUTTONS.DefaultBtn, variant: 'text' };
+  }
+};
 
-  return <CustomButton {...otherProps}>{children}</CustomButton>;
+const Button = ({ buttonType, children, ...otherProps }) => {
+  const { CUSTOM_BTN, variant } = getCustomBtn(buttonType);
+  return (
+    <CUSTOM_BTN variant={variant} {...otherProps}>
+      {children}
+    </CUSTOM_BTN>
+  );
 };
 
 export default Button;

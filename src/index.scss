@@ -5,9 +5,11 @@
 body {
   margin: 0;
   padding: 1rem 2rem;
-  font-family: 'Montserrat', 'Open Sans', -apple-system, sans-serif;
+  font-family: 'Montserrat', -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./assets/backgrounds/vector_grey_lines_bg.jpg');
+  background-size: cover;
 }
 
 a {

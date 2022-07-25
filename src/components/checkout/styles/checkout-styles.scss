@@ -45,10 +45,10 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+      }
 
-        :first-child {
-          padding-bottom: 1rem;
-        }
+      .login-before-checkout a {
+        color: white;
       }
 
       .hidden {
@@ -64,9 +64,5 @@
       font-size: 1.5rem;
       font-weight: bolder;
     }
-  }
-
-  .pay-now-button {
-    margin-top: 1rem;
   }
 }

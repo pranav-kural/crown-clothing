@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -5,7 +6,7 @@ import {
   selectCategoriesMap,
   selectCategoriesIsLoading,
 } from '../../store/reducers/categories/categories-selector';
-import ProductCardComponent from '../products-preview/product-card-component';
+import ProductCardComponent from '../products-card/product-card-component';
 import Spinner from '../spinner/spinner-component';
 import './category-products-styles.scss';
 
@@ -27,17 +28,26 @@ const CategoryProducts = () => {
   }, [categoriesMap, category]);
 
   return (
-    <div className='category-products'>
+    <div className="category-products">
       <h2>{category.toUpperCase()}</h2>
       {isLoading ? (
         <Spinner />
       ) : (
-        <div className="category-products-container">
+        <Grid
+          container
+          direction="row"
+          spacing={{ xs: 2, md: 3 }}
+          rowSpacing={4}
+          alignContent="center"
+          justifyContent="center"
+        >
           {products &&
             products.map((product) => (
-              <ProductCardComponent product={product} key={product.id} />
+              <Grid item xs={12} sm={12} md={6} lg={3} xl={2}>
+                <ProductCardComponent product={product} key={product.id} />
+              </Grid>
             ))}
-        </div>
+        </Grid>
       )}
     </div>
   );

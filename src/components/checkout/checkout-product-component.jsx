@@ -16,26 +16,17 @@ const CheckoutProductListing = ({ cartItems }) => {
       </span>
       <span>{name}</span>
       <span>
-        <Button
-          buttonType="unstyled"
-          onClick={() => dispatch(decreaseItemQuantity(id))}
-        >
+        <Button onClick={() => dispatch(decreaseItemQuantity(id))}>
           {'❮'}
         </Button>
         {quantity}
-        <Button
-          buttonType="unstyled"
-          onClick={() => dispatch(increaseItemQuantity(id))}
-        >
+        <Button onClick={() => dispatch(increaseItemQuantity(id))}>
           {'❯'}
         </Button>
       </span>
       <span>${price}</span>
       <span>
-        <Button
-          buttonType="unstyled"
-          onClick={() => dispatch(removeItemFromCart(id))}
-        >
+        <Button onClick={() => dispatch(removeItemFromCart(id))}>
           &#10005;
         </Button>
       </span>

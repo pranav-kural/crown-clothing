@@ -1,8 +1,9 @@
+import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import {
   CategoryCardDiv,
   CategoryCardImage,
-  CategoryCartBody,
+  CategoryCardBody,
 } from './styles/categories-listing-styles';
 
 const CategoryCard = ({ title, imageUrl }) => {
@@ -13,12 +14,16 @@ const CategoryCard = ({ title, imageUrl }) => {
           backgroundImage: `url(${imageUrl})`,
         }}
       />
-      <CategoryCartBody>
-        <h2>{title}</h2>
+      <CategoryCardBody>
+        <Typography variant="h5" fontFamily="Montserrat, Roboto, san-serif">
+          {title.toUpperCase()}
+        </Typography>
         <Link to={`shop/${title}`}>
-          <p>Shop Now</p>
+          <Typography variant="p" paddingTop="1rem">
+            Shop Now
+          </Typography>
         </Link>
-      </CategoryCartBody>
+      </CategoryCardBody>
     </CategoryCardDiv>
   );
 };

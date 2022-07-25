@@ -1,8 +1,10 @@
+import { Container } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import Navigation from '../../components/navigation/navigation-component';
+import Header from '../../components/header/header-component';
 import { appSetup } from './app-setup';
+import './app.scss';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -13,10 +15,12 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="app-container">
-      <Navigation />
-      <Outlet />
-    </div>
+    <Container>
+      <Header />
+      <div id="app-main">
+        <Outlet />
+      </div>
+    </Container>
   );
 };
 
