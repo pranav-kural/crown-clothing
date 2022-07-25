@@ -43,8 +43,8 @@ const CategoryProducts = () => {
         >
           {products &&
             products.map((product) => (
-              <Grid item xs={12} sm={12} md={6} lg={3} xl={2}>
-                <ProductCardComponent product={product} key={product.id} />
+              <Grid item xs={12} sm={12} md={6} lg={3} xl={2} key={product.id}>
+                <ProductCardComponent product={product} />
               </Grid>
             ))}
         </Grid>
